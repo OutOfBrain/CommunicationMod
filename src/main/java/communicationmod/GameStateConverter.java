@@ -599,6 +599,7 @@ public class GameStateConverter {
      * "x" (int): The node's x coordinate
      * "y" (int): The node's y coordinate
      * "symbol" (string, optional): The map symbol for the node (?, $, T, M, E, R)
+     * "hasEmeraldKey" (boolean): Weather the room is a "flame elite" containing the emerald key
      * "children" (list, optional): The nodes connected by an edge out of the provided node
      * Note: children are added by convertMapToJson()
      * @param node The node to convert
@@ -607,6 +608,7 @@ public class GameStateConverter {
     private static HashMap<String, Object> convertMapRoomNodeToJson(MapRoomNode node) {
         HashMap<String, Object> jsonNode = convertCoordinatesToJson(node.x, node.y);
         jsonNode.put("symbol", node.getRoomSymbol(true));
+        jsonNode.put("hasEmeraldKey", node.hasEmeraldKey);
         return jsonNode;
     }
 
