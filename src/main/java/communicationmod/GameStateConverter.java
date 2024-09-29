@@ -299,6 +299,7 @@ public class GameStateConverter {
     /**
      * The map screen state object contains:
      * "current_node" (object): The node object for the currently selected node, if applicable
+     * "emerald_key_node" (object): The node object for the emerald key node, if available
      * "next_nodes" (list): A list of nodes that can be chosen next
      * "first_node_chosen" (boolean): Whether the first node in the act has already been chosen
      * "boss_available" (boolean): Whether the next node choice is a boss
@@ -308,6 +309,10 @@ public class GameStateConverter {
         HashMap<String, Object> state = new HashMap<>();
         if (AbstractDungeon.getCurrMapNode() != null) {
             state.put("current_node", convertMapRoomNodeToJson(AbstractDungeon.getCurrMapNode()));
+        }
+        final MapRoomNode emeraldKeyNode = ChoiceScreenUtils.findEmeraldKeyNode();
+        if (emeraldKeyNode != null) {
+            state.put("emerald_key_node", convertMapRoomNodeToJson(emeraldKeyNode));
         }
         ArrayList<Object> nextNodesJson = new ArrayList<>();
         for(MapRoomNode node : ChoiceScreenUtils.getMapScreenNodeChoices()) {

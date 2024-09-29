@@ -683,6 +683,24 @@ public class ChoiceScreenUtils {
         return (currMapNode.y == 14 || (AbstractDungeon.id.equals(TheEnding.ID) && currMapNode.y == 2));
     }
 
+    /**
+     * Return the room with the emeraldKey containing a "flame elite".
+     * @return MapRoomNode|null The map screen state object
+     */
+    public static MapRoomNode findEmeraldKeyNode() {
+        ArrayList<ArrayList<MapRoomNode>> map = AbstractDungeon.map;
+
+        for (ArrayList<MapRoomNode> layer : map) {
+            for (MapRoomNode node : layer) {
+                if (node.hasEmeraldKey) {
+                    return node;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public static ArrayList<String> getMapScreenChoices() {
         ArrayList<String> choices = new ArrayList<>();
         MapRoomNode currMapNode = AbstractDungeon.getCurrMapNode();
